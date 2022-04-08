@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CompareCoverter.CompareConverterPage"
+             Title="CompareConverterPage"
+             BackgroundColor="White"
+             xmlns:Converter="clr-namespace:CompareCoverter.Converters"
+             xmlns:ViewModel="clr-namespace:CompareCoverter.ViewModel">
+
+    <ContentPage.BindingContext>
+        <ViewModel:CompareConverterViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <x:Double x:Key="comparingValue">0.5</x:Double>
+            <x:String x:Key="stringValue">Test</x:String>
+
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+
+    <StackLayout Spacing="20">
+
+        <Label 
+            Text="The CompareConverter is a Converter that converts an object of a type implementing IComparable, and returns the comparison result as a bool if no objects were specified through the TrueObject and/or FalseObject properties. If values are assigned to the TrueObject and/or FalseObject properties, the CompareConverter returns the respective object assigned." 
+            TextColor="Black"/>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Comparing Value : "/>
+            <Label x:Name="labelString"/>
+
+        </StackLayout>
+        <Stepper x:Name="stepper"
+            Maximum="1"
+            Minimum="0"
+            Increment="0.1"
+            Value="{Binding RangeValue, Mode=TwoWay,StringFormat='{0:F2}'}"
+            HorizontalOptions="FillAndExpand"/>
+
+        <Label Text="{Binding Source={Reference stepper},Path=Value, StringFormat='The Stepper value is {0:F2}'}"/>
+
+        <Label Text="Pass if the comparison is true and fail if false"/>
+
+        <Label x:Name="label"
+            Text="{Binding RangeValue,Converter={Converter:CompareConverter ValueForComparing={StaticResource comparingValue},ComparisonOperator=Smaller,TrueObject=Pass,FalseObject=Fail}}"
+            BackgroundColor="{Binding RangeValue,Converter={Converter:CompareConverter ValueForComparing={StaticResource comparingValue},ComparisonOperator=Smaller,TrueObject=Green,FalseObject=Red}}"
+            TextColor="White"
+            Padding="4, 0"/>
+
+        <Entry Text="{Binding StringValue}"/>
+
+
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BoolToOpacityConverter.Samples.BoolToOpacityConverterSamplePage"
+             Title="BoolToOpacityConverter"
+             xmlns:local="clr-namespace:BoolToOpacityConverter.Converters"
+             BackgroundColor="White">
+    <ContentPage.Resources>
+        <local:BoolToOpacityConverter x:Key="BoolToOpacityConverter"/>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <Grid RowSpacing="25" RowDefinitions="Auto,Auto,Auto,Auto,*"
+              Padding="{OnPlatform iOS='30,60,30,30', Default='30'}">
+            <HorizontalStackLayout>
+                <CheckBox x:Name="showImageCheckBox" IsChecked="True"/>
+                <Label Text="Show Image" VerticalTextAlignment="Center"/>
+            </HorizontalStackLayout>
+            <Button Grid.Row="2" Text="Set Opacity" Clicked="Button_Clicked"/>
+
+
+
+            <Image Grid.Row="4"
+                   x:Name="botImage"
+                   Source="dotnet_bot.png"
+                   BindingContext="{Reference showImageCheckBox}"
+                   Opacity="{Binding IsChecked,Converter={StaticResource BoolToOpacityConverter}, Mode=TwoWay}"
+                   SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                   WidthRequest="250"
+                   HeightRequest="310"
+                   HorizontalOptions="Center" />
+
+        </Grid>
+    </ScrollView>
+</ContentPage>

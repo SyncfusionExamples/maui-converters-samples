@@ -1,0 +1,15 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BoolToOpacityConverter.MainPage"
+             xmlns:local="clr-namespace:BoolToOpacityConverter"
+             BackgroundColor="{DynamicResource SecondaryColor}">
+
+
+    <StackLayout Margin="100" Spacing="10" >
+        <Label Text="Bool To Opacity Converter"  VerticalOptions="Center" HorizontalOptions="Center" TextColor="OrangeRed">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="BoolToOpacityTapped"></TapGestureRecognizer>
+            </Label.GestureRecognizers>
+        </Label> 
+     </StackLayout>
+  </ContentPage>

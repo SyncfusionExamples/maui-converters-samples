@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ListToStringConverter.ListToStringPage"
+             xmlns:local="clr-namespace:ListToStringConverter"
+             BackgroundColor="White">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ListToStringConverter x:Key="ListToStringConverter" Separator="+"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <local:ListToStringViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout Spacing="15">
+
+        <Grid RowDefinitions="0.5*,*,*,*" ColumnDefinitions="*,*">
+            <Entry Grid.Row="0" Grid.ColumnSpan="2" HeightRequest="100"
+                    HorizontalOptions="FillAndExpand" VerticalOptions="Start"
+                     Text="{Binding TheNote,Mode=TwoWay}" TextColor="Black"/>
+            <Button Grid.Row="2" Grid.ColumnSpan="2" Text="String with + Seperator" Command="{Binding AddCommand}"
+                HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label Text="{Binding Notes, Converter={StaticResource ListToStringConverter}}" Grid.Row="3"
+                   FontSize="22" TextColor="Black"/>
+        </Grid>
+
+    </StackLayout>
+</ContentPage>

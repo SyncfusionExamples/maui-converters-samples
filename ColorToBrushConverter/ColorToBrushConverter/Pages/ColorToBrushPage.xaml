@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converter="clr-namespace:ColorToBrushConverter"
+             xmlns:viewModel="clr-namespace:ColorToBrushConverter"
+             x:Class="ColorToBrushConverter.ColorToBrushPage"
+             Title="ColorToBrushConverter"            
+             BackgroundColor="White">
+    <ContentPage.Resources>
+        <converter:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
+        <viewModel:ColorViewModel x:Key="ColorViewModel"/>
+    </ContentPage.Resources>
+    <StackLayout Orientation="Vertical" Padding="20" Spacing="20"  HorizontalOptions="Center" VerticalOptions="Center">
+        <Grid RowDefinitions="50,50,50,50" ColumnDefinitions="25*,50*,25*" ColumnSpacing="10">
+            <Label Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" Text="ColorPreview" HorizontalOptions="Center"/>
+            <BoxView x:Name="previewBox" Grid.Row="0" Grid.Column="2" HeightRequest="25" WidthRequest="50" BindingContext="{StaticResource ColorViewModel}" BackgroundColor="{Binding PreviewColor}"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Text="Red" TextColor="Red" HorizontalOptions="Center"/>
+            <Slider  Grid.Row="1" Grid.Column="1" x:Name="redSlider" Minimum="0" Maximum="255" BindingContext="{StaticResource ColorViewModel}" Value="{Binding RedSliderValue}" />
+            <Label  Grid.Row="1" Grid.Column="2" BindingContext="{x:Reference redSlider}" Text="{Binding Value, StringFormat='{0:F1}'}"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Text="Green" TextColor="Green" HorizontalOptions="Center"/>
+            <Slider  Grid.Row="2" Grid.Column="1" x:Name="greenSlider" Minimum="0" Maximum="255"  BindingContext="{StaticResource ColorViewModel}" Value="{Binding GreenSliderValue}" />
+            <Label  Grid.Row="2" Grid.Column="2" BindingContext="{x:Reference greenSlider}" Text="{Binding Value, StringFormat='{0:F1}'}"/>
+
+            <Label Grid.Row="3" Grid.Column="0" Text="Blue" TextColor="Blue" HorizontalOptions="Center"/>
+            <Slider  Grid.Row="3" Grid.Column="1" x:Name="blueSlider" Minimum="0" Maximum="255"  BindingContext="{StaticResource ColorViewModel}" Value="{Binding BlueSliderValue}" />
+            <Label  Grid.Row="3" Grid.Column="2" BindingContext="{x:Reference blueSlider}" Text="{Binding Value, StringFormat='{0:F1}'}"/>
+            
+          
+        </Grid>
+        <StackLayout>
+            <Button Text="Change Color" Clicked="ChangeColorClicked"/>
+        </StackLayout>
+        <Grid RowDefinitions="Auto" ColumnDefinitions="50*,50*" ColumnSpacing="20" Padding="30">
+            <Label Text="Color ->" FontSize="16" VerticalOptions="Center" FontAttributes="Bold"/>
+            <StackLayout Grid.Column="1" x:Name="ColorBrush" 
+                         HeightRequest="50"
+                         WidthRequest="50"
+                         BackgroundColor="Green"/>
+
+        </Grid>
+
+        <Grid RowDefinitions="Auto" ColumnDefinitions="50*,50*" ColumnSpacing="20" Padding="30">
+            <Label Text="Brush ->" FontSize="16" VerticalOptions="Center" FontAttributes="Bold"/>
+            <StackLayout Grid.Column="1" HeightRequest="50" x:Name="BrushColor"
+                         WidthRequest="50"
+                         BindingContext="{x:Reference ColorBrush}"
+                         Background="{Binding BackgroundColor, Converter={StaticResource ColorToBrushConverter}, Mode=TwoWay}"/>
+        </Grid>
+        <StackLayout>
+            <Button Text="Change Brush" Clicked="BackgroundChange"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

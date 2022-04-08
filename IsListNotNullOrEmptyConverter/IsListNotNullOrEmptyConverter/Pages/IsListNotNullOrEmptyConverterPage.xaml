@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IsListNotNullOrEmptyConverter.IsListNotNullOrEmptyConverterPage"
+             Title="IsListNotNullOrEmptyConverterPage"
+             BackgroundColor="White"
+             xmlns:Converters="clr-namespace:IsListNotNullOrEmptyConverter.Converters"
+             xmlns:ViewModel="clr-namespace:IsListNotNullOrEmptyConverter.ViewModel">
+
+    <ContentPage.BindingContext>
+        <ViewModel:IsListNotNullOrEmptyViewModel x:Name="isListNotNullOrEmptyViewModel"/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converters:IsListNotNullOrEmpty x:Key="isListNotNullOrEmpty"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="20">
+        <Label Text="List of Items" FontSize="Large"/>
+        <ScrollView HeightRequest="200" WidthRequest="150" Padding="20">
+            <CollectionView x:Name="list" ItemsSource="{Binding ListOfItems}" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding .}"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+        </ScrollView>
+        <StackLayout Orientation="Horizontal" Padding="25" Spacing="20">
+            <Button Text="Clear" Command="{Binding ClearCollectionCommand}"/>
+            <Button Text="Add" Command="{Binding AddCollectionCommand}"/>
+        </StackLayout>
+        <StackLayout HeightRequest="200" WidthRequest="200">
+            <Label Text="{Binding ListOfItems,Converter={StaticResource isListNotNullOrEmpty}}"/>
+            <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Large" Text="List is not null or empty"
+                   BackgroundColor="Green" TextColor="White"
+                   IsVisible="{Binding ListOfItems,Converter={StaticResource isListNotNullOrEmpty}}"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

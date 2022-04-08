@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EnumToIntConverter.EnumToIntPage"
+             xmlns:local="clr-namespace:EnumToIntConverter"
+             BackgroundColor="White">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:EnumToIntConverter x:Key="EnumToInt"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <local:EnumToIntViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <Picker x:Name="directionPicker"
+                    Title="Directions"
+                    TitleColor="Black"
+                    ItemsSource="{Binding AllDirections}"
+                    SelectedItem="{Binding AllDirections[0]}"/>
+
+            <Label BindingContext="{x:Reference directionPicker}"
+                TextColor="Black"
+                Text="{Binding SelectedItem, Converter={StaticResource EnumToInt}}"/>
+        </StackLayout>
+    </ContentPage.Content>
+    
+</ContentPage>
