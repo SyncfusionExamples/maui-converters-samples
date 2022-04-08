@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NumericToBoolConverter.NumericToBoolSamples"
+             xmlns:local="clr-namespace:NumericToBoolConverter.Converters"
+             xmlns:ViewModel="clr-namespace:NumericToBoolConverter.ViewModels"
+             Title="NumericToBool Converter"
+             BackgroundColor="White">
+    <ContentPage.BindingContext>
+        <ViewModel:NumericToBoolViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <local:NumericToBoolConverter x:Key="NumericToBool" x:Name="test"/>
+    </ContentPage.Resources>
+    <StackLayout Margin="100">
+
+        <Label Text="Numeric To Bool Converter" VerticalOptions="Center" HorizontalOptions="Center" TextDecorations="Underline"></Label>
+
+
+        <Slider Maximum="100" Minimum="0" Value="{Binding  EntryValue}"></Slider>
+
+
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Slider Value is :  " ></Label>
+            <Label Text="{Binding EntryValue}" FontSize="15" FontAttributes="Bold"/>
+        </StackLayout>
+
+
+
+
+        <CheckBox IsChecked="{Binding EntryValue,Converter={StaticResource NumericToBool}, Mode=TwoWay} "/>
+
+      
+            
+        <Label Text="{Binding EntryValue,Converter={StaticResource NumericToBool}}"
+              />
+       
+    </StackLayout>
+</ContentPage>

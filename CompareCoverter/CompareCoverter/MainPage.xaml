@@ -1,0 +1,11 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CompareCoverter.MainPage"
+             BackgroundColor="{DynamicResource SecondaryColor}">
+
+    <ScrollView>
+        <StackLayout Spacing="20" HorizontalOptions="Center" VerticalOptions="Center">
+            <Button Text="CompareConverter" Clicked="CompareConverterButton_Clicked"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MultiConverter.MultiConverterSamplePage"
+             Title="MultiConverter"
+             xmlns:viewModel="clr-namespace:MultiConverter.ViewModels"
+             xmlns:local="clr-namespace:MultiConverter.Converters"
+             BackgroundColor="White">
+    <ContentPage.BindingContext>
+        <viewModel:MultiConverterViewModel></viewModel:MultiConverterViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:MultiConverter x:Key="MultiConverter">
+                <local:TextCaseConverter />
+                <local:EqualConverter />
+            </local:MultiConverter>
+            <x:Array x:Key="MultiConverterParams" Type="{x:Type local:MultiConverterParameter}">
+                <local:MultiConverterParameter TypeOfConverter="{x:Type local:TextCaseConverter}" ValueOfConverter="{x:Static local:TextCaseType.Upper}" />
+                <local:MultiConverterParameter TypeOfConverter="{x:Type local:EqualConverter}" ValueOfConverter="MARCH" />
+            </x:Array>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Margin="100">
+      
+
+        <Entry Text="{Binding EnteredName}"></Entry>
+
+        <Label Text="{Binding EnteredName, Converter={StaticResource MultiConverter}, ConverterParameter={StaticResource MultiConverterParams}}" HorizontalOptions="CenterAndExpand" />
+    </StackLayout>
+</ContentPage>

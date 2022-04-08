@@ -1,0 +1,17 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NumericToBoolConverter.MainPage"
+             xmlns:local="clr-namespace:NumericToBoolConverter"
+             BackgroundColor="{DynamicResource SecondaryColor}">
+
+
+    <StackLayout Margin="100" Spacing="10" >
+
+        <Label Text="Numeric To Bool Converter"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" TextColor="OrangeRed">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="NumericToBoolTapped"></TapGestureRecognizer>
+            </Label.GestureRecognizers>
+        </Label>
+
+    </StackLayout>
+  </ContentPage>

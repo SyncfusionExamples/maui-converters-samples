@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IndexToArrayItemConverter.IndexToArrayItemConverterPage"
+             Title="IndexToArrayItemConverterPage"
+             BackgroundColor="White"
+             xmlns:Converter="clr-namespace:IndexToArrayItemConverter.Converters"
+             xmlns:ViewModel="clr-namespace:IndexToArrayItemConverter.ViewModel">
+    <ContentPage.BindingContext>
+        <ViewModel:IndexToArrayItemViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        
+        <ResourceDictionary>
+            <Converter:IndexToArrayItemConverter x:Key="IndexToArrayItemConverter" />
+            <x:Array x:Key="District" Type="{x:Type x:String}">
+                <x:String>Chennai</x:String>
+                <x:String>Thoothukudi</x:String>
+                <x:String>TirunelVeli</x:String>
+                <x:String>Trichy</x:String>
+                <x:String>Madurai</x:String>
+            </x:Array>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        
+        <Label Text="Enter the District Number"></Label>
+
+        <Stepper x:Name="Stepper"
+                 Minimum="0"
+                 Maximum="4"
+                 Increment="1"
+                 Value="{Binding SelectedValue}"/>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Index Value : "/>
+            <Label Text="{Binding Value, Source={x:Reference Stepper}}"/>
+        </StackLayout>
+        <Picker x:Name="picker" Title="Select a State" TitleColor="Red" 
+                ItemsSource="{StaticResource District}"
+                SelectedItem="{Binding SelectedValue, Converter={StaticResource IndexToArrayItemConverter},ConverterParameter={StaticResource District}}">
+
+        </Picker>
+
+
+    </StackLayout>
+
+</ContentPage>

@@ -1,0 +1,50 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoubleToIntConverter.Samples.DoubleToIntConverterSamples"
+             xmlns:local="clr-namespace:DoubleToIntConverter.Converters"
+             xmlns:viewModel="clr-namespace:DoubleToIntConverter.ViewModels"
+             BackgroundColor="{DynamicResource SecondaryColor}">
+    <ContentPage.BindingContext>
+        <viewModel:DoubleToIntViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <local:DoubleToIntConverter x:Key="DoubleToInt" x:Name="test"/>
+        <ResourceDictionary>
+        <x:Array x:Key="Color" Type="{x:Type x:String}">
+                <x:String>0.Blue</x:String>
+                <x:String>1.Green</x:String>
+                <x:String>2.Yellow</x:String>
+                <x:String>3.Red</x:String>
+                <x:String>4.Orange</x:String>
+                <x:String>5.Pink</x:String>
+                <x:String>6.White</x:String>
+                <x:String>7.Violet</x:String>
+                <x:String>8.Silver</x:String>
+                <x:String>9.Gold</x:String>
+                <x:String>10.Black</x:String>
+            </x:Array>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Margin="100">
+        
+        <Label Text="Double To Int Converter" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+
+
+        <Slider  x:Name="Doublevalue" Value="{Binding EntryValue}"    Maximum="10" Minimum="0" />
+    
+        <StackLayout Orientation="Horizontal">
+             <Label Text="Slider value is:   "></Label>
+             <Label Text="{Binding Source={x:Reference Doublevalue},Path=Value}"/>
+        </StackLayout>
+
+       
+
+        <Picker ItemsSource="{StaticResource Color}" SelectedIndex="{Binding EntryValue,Converter={StaticResource DoubleToInt },Mode=TwoWay}"></Picker>
+
+
+    </StackLayout>
+    
+    
+    
+</ContentPage>

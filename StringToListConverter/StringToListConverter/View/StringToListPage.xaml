@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StringToListConverter.StringToListPage"
+             xmlns:xct="clr-namespace:StringToListConverter"
+             BackgroundColor="White">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:StringToListConverter x:Key="StringToListConverter" SplitOptions="RemoveEmptyEntries">
+                <xct:StringToListConverter.Separators>
+                    <x:String>,</x:String>
+                    <x:String>.</x:String>
+                    <x:String>;</x:String>
+                </xct:StringToListConverter.Separators>
+            </xct:StringToListConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+        
+    <ContentPage.Content>
+        <Grid Margin="20,0" RowDefinitions="Auto,Auto,*">
+            <Label
+                Grid.Row="0"
+                FontAttributes="Bold"
+                Text="Enter some text separated by ',' or '.' or ';'" />
+            <Entry
+                x:Name="ExampleText"
+                Grid.Row="1"
+                FontSize="Medium"
+                Placeholder="Enter some text separated by ',' or '.' or ';'"
+                Text="Item 1,Item 2,Item 3" 
+                TextColor="Black"/>
+            <ListView
+                Grid.Row="2"
+                BindingContext="{x:Reference Name=ExampleText}"
+                ItemsSource="{Binding Path=Text, Converter={StaticResource StringToListConverter}}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label FontSize="Medium" Text="{Binding .}" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

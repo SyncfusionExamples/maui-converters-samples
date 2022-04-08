@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IsStringNotNullOrWhiteSpaceConverter.IsStringNotNullOrWhiteSpaceConverterPage"
+             Title="IsStringNotNullOrWhiteSpaceConverterPage"
+             BackgroundColor="White"
+             xmlns:Converter="clr-namespace:IsStringNotNullOrWhiteSpaceConverter.Converters">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converter:IsStringNotNullOrWhiteSpace x:Key="isStringNotNullOrWhiteSpace"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Label Text="The IsStringNotNullOrEmptyConverter is a converter that allows users to convert an incoming string binding to a bool value. This value represents if the incoming string binding value is not null or whitespace using string.IsNullOrWhiteSpace."/>
+        <Entry x:Name="Entry"/>
+        <Label Text="You Entered a value in the Entry which states that the string is not null or WhiteSpace"
+               BindingContext="{x:Reference Entry}"
+               IsVisible="{Binding Text,Converter={StaticResource isStringNotNullOrWhiteSpace}}"/>
+        <Label Text="String is not null or Whitespace" BackgroundColor="Green" HeightRequest="50" TextColor="White"
+               BindingContext="{x:Reference Entry}"
+               IsVisible="{Binding Text,Converter={StaticResource isStringNotNullOrWhiteSpace}}"/>
+    </StackLayout>
+</ContentPage>

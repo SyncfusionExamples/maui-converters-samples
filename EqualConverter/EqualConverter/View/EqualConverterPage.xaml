@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EqualConverter.EqualConverterPage"
+             xmlns:local="clr-namespace:EqualConverter"
+             BackgroundColor="White">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:EqualConverter x:Key="EqualConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*">
+            <Label Text="What is the value of pie" Grid.Row="0" Grid.Column="0"/>
+            <Entry x:Name="question1" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center"
+                   FontSize="20" TextColor="Black"/>
+            <Label BindingContext="{Reference question1}"
+                   Text="{Binding Text, Converter={StaticResource EqualConverter},ConverterParameter=3.14}"
+                   Grid.Row="0" Grid.Column="2"/>
+
+            <Label Text="Where is Eiffle Tower" Grid.Row="1" Grid.Column="0"/>
+            <Entry x:Name="question2" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center"
+                   FontSize="20" TextColor="Black"/>
+            <Label BindingContext="{Reference question2}"
+                   Text="{Binding Text, Converter={StaticResource EqualConverter},ConverterParameter=Paris}"
+                   Grid.Row="1" Grid.Column="2"/>
+
+            <Label Text="Is Marie Curie a scientist?" Grid.Row="2" Grid.Column="0"/>
+            <Entry x:Name="question3" Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center"
+                   FontSize="20" TextColor="Black"/>
+            <Label BindingContext="{Reference question3}"
+                Text="{Binding Text, Converter={StaticResource EqualConverter},ConverterParameter=True}"
+                Grid.Row="2" Grid.Column="2"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

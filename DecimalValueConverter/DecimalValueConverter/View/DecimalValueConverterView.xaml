@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DecimalValueConverter.DecimalValueConverterView"
+              xmlns:local="clr-namespace:DecimalValueConverter.Converters"
+             Title="DecimalValueConverterView"
+             BackgroundColor="White">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:DecimalValueConverter x:Key="DecimalValueConverter" OutputType="String" DecimalPlaceLimit="4"></local:DecimalValueConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+           </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" 
+                   Grid.Column="0"
+                   Text="Enter the Decimal Values"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center">
+            </Label>
+
+            <Entry x:Name="DecimalLimit"
+                Grid.Row="0" 
+                   Grid.Column="1"
+                   Text="1234.4567"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center">
+            </Entry>
+
+            <Label Grid.Row="1" 
+                   Grid.Column="0"
+                   Text="Output Converter Values"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center">
+            </Label>
+
+            <Label Grid.Row="1" 
+                   Grid.Column="1"
+                   BindingContext="{x:Reference DecimalLimit}"
+                   Text="{Binding Text, Converter={StaticResource DecimalValueConverter}}"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center">
+            </Label>
+        </Grid>
+    </StackLayout>
+</ContentPage>
