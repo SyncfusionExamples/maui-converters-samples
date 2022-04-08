@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BoolToObjectConverter.BoolToObjectConverterView"
+             xmlns:local="clr-namespace:BoolToObjectConverter.Converters"
+             Title="BoolToObjectConverterView"
+             BackgroundColor="White">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:BoolToObjectConverter x:Key="BoolToObjectConverter" TrueValueObject="30" FalseValueObject="20"></local:BoolToObjectConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0"
+                   Text=" For True Object Check here"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"></Label>
+
+            <CheckBox x:Name="MyObject"
+                     Grid.Row="0" Grid.Column="1" 
+                     IsChecked="True" >
+            </CheckBox>
+
+            <Label  
+               Grid.Row="3" Grid.ColumnSpan="3" 
+               Text="BoolToObjectConverter"
+               BindingContext="{x:Reference MyObject}"
+               FontSize="{Binding IsChecked, Converter={StaticResource BoolToObjectConverter}}"
+              />
+        </Grid>
+    </StackLayout>
+</ContentPage>
