@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusionConverters="clr-namespace:Syncfusion.Maui.Core.Converters;assembly=Syncfusion.Maui.Core"
+             x:Class="MAUIValueConverters.BoolToOpacityConverterPage">
+
+    <ContentPage.Resources>
+        <syncfusionConverters:BoolToOpacityConverter x:Key="boolToOpacityConverter"/>
+    </ContentPage.Resources>
+    <VerticalStackLayout WidthRequest="400">
+        <Grid HeightRequest="300">
+            <Image BindingContext="{x:Reference visibilitySwitch}"
+               IsVisible="{Binding IsToggled, Converter={StaticResource boolToOpacityConverter}}"
+                Source="dotnet_bot.png"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                HeightRequest="200"
+                HorizontalOptions="Center" />
+        </Grid>
+        <Label Text="Show / Hide image with bool value" HorizontalOptions="Center"/>
+        <Switch x:Name="visibilitySwitch" IsToggled="True" HorizontalOptions="Center"/>
+    </VerticalStackLayout>
+</ContentPage>

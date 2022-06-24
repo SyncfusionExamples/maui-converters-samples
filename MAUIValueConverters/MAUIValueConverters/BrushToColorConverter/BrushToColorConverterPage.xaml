@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusionConverters="clr-namespace:Syncfusion.Maui.Core.Converters;assembly=Syncfusion.Maui.Core"
+             x:Class="MAUIValueConverters.BrushToColorConverterPage">
+    <ContentPage.Resources>
+        <syncfusionConverters:BrushToColorConverter x:Key="brushToColorConverter"/>
+    </ContentPage.Resources>
+    <VerticalStackLayout WidthRequest="400" Spacing="20" VerticalOptions="Center">
+        <Grid RowDefinitions="Auto" ColumnDefinitions="50*,50*" ColumnSpacing="30" Padding="10">
+            <Label Text="Stroke (Brush) " FontSize="16" VerticalOptions="Center"  FontAttributes="Bold"/>
+            <Rectangle x:Name="brushProperty" Grid.Column="1" HeightRequest="50" WidthRequest="70" Stroke="Green" StrokeThickness="5"  HorizontalOptions="Start"/>
+
+        </Grid>
+        <Grid RowDefinitions="Auto" ColumnDefinitions="50*,50*" ColumnSpacing="30" Padding="10">
+            <Label Text="BackgroundColor (Color)" FontSize="16" VerticalOptions="Center"  FontAttributes="Bold"/>
+            <StackLayout Grid.Column="1"
+                         BindingContext="{x:Reference brushProperty}"
+                         HeightRequest="50"
+                         WidthRequest="70"
+                         BackgroundColor="{Binding Stroke,Converter={StaticResource brushToColorConverter}}" HorizontalOptions="Start"/>
+
+        </Grid>
+
+        <Label FontSize="12" Text="* Stroke property is set to a binding value for the BackgroundColor property."/>
+    </VerticalStackLayout>
+</ContentPage>

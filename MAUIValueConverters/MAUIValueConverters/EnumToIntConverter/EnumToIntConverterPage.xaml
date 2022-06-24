@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusionConverters="clr-namespace:Syncfusion.Maui.Core.Converters;assembly=Syncfusion.Maui.Core"
+             x:Class="MAUIValueConverters.EnumToIntConverterPage"
+             xmlns:local="clr-namespace:MAUIValueConverters">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <syncfusionConverters:EnumToIntConverter x:Key="EnumToIntConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <local:EnumToIntViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+
+            <Grid RowDefinitions="*,*" HorizontalOptions="Center" RowSpacing="20">
+            <HorizontalStackLayout Spacing="20">
+                <Label Text="Select the category to identify the floor"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"/>
+                <Picker x:Name="directionPicker"
+                    TitleColor="Black"
+                    ItemsSource="{Binding TotalFloor}"
+                    SelectedIndex="{Binding SelectedFloor,Converter={StaticResource EnumToIntConverter},ConverterParameter={x:Type local:Floor}}"/>
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="1"
+                TextColor="Red"
+                Text="{Binding SelectedFloor, Converter={StaticResource EnumToIntConverter},StringFormat='Please press number {0} in the lift'}"/>
+            </Grid>
+        </StackLayout>
+            
+    </ContentPage.Content>
+</ContentPage>

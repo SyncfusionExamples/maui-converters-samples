@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusionConverters="clr-namespace:Syncfusion.Maui.Core.Converters;assembly=Syncfusion.Maui.Core"
+             x:Class="MAUIValueConverters.StringToListConverterPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <syncfusionConverters:StringToListConverter x:Key="StringToListConverter" SplitOptions="RemoveEmptyEntries">
+                <syncfusionConverters:StringToListConverter.Separators>
+                    <x:String>,</x:String>
+                    <x:String>.</x:String>
+                    <x:String>;</x:String>
+                </syncfusionConverters:StringToListConverter.Separators>
+            </syncfusionConverters:StringToListConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <VerticalStackLayout HorizontalOptions="Center"
+                     VerticalOptions="Center" WidthRequest="500">
+
+            <Grid Margin="20,0" RowDefinitions="Auto,Auto,Auto,*" RowSpacing="20" HeightRequest="300">
+
+                <HorizontalStackLayout>
+                    <Label Text="Enter the products to add in the cart" />
+                    <Label Text=" (seperated by ' , ' or ' . ' or ' ; ')" FontAttributes="Italic"/>
+                </HorizontalStackLayout>
+
+                <Entry x:Name="ProductItem"
+                Grid.Row="1"
+                FontSize="Medium"
+                Placeholder="Enter here"
+                Text="Apple ,Orange " 
+                TextColor="Black"/>
+                
+                <Label Text="Products in your cart"
+                       Grid.Row="2"
+                       BackgroundColor="DarkViolet"
+                       TextColor="White"
+                       WidthRequest="140"
+                       HorizontalOptions="Start"
+                       HorizontalTextAlignment="Center"/>
+
+
+                <ListView
+                HeightRequest="300"
+                Grid.Row="3"
+                BindingContext="{x:Reference Name=ProductItem}"
+                ItemsSource="{Binding Path=Text, Converter={StaticResource StringToListConverter}}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label FontSize="Medium" Text="{Binding .}" />
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

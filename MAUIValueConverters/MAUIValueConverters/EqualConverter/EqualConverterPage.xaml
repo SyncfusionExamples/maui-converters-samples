@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusionConverters="clr-namespace:Syncfusion.Maui.Core.Converters;assembly=Syncfusion.Maui.Core"
+             x:Class="MAUIValueConverters.EqualConverterPage"
+             xmlns:local="clr-namespace:MAUIValueConverters">
+
+    <ContentPage.Resources>
+        <syncfusionConverters:EqualConverter x:Key="EqualConverter"/>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="400">
+        <Grid RowDefinitions="*,*,*" ColumnDefinitions=".3*,*" RowSpacing="20" ColumnSpacing="20" HorizontalOptions="Center">
+
+            <Label Text="Trivia" FontSize="Medium" HorizontalOptions="End" />
+            <Label Text="The sun rises in the east" Grid.Row="1" Grid.Column="0"/>
+            <HorizontalStackLayout Grid.Row="1" Grid.Column="1" Spacing="10">
+                <Entry x:Name="questionOne"/>
+                <Label BindingContext="{Reference questionOne}"
+                   Text="Correct"
+                   TextColor="LimeGreen"
+                   IsVisible="{Binding Text, Converter={StaticResource EqualConverter},ConverterParameter=True}"/>
+            </HorizontalStackLayout>
+
+            <Label Text="What is the value of pi" Grid.Row="2" Grid.Column="0"/>
+            <HorizontalStackLayout Grid.Row="2" Grid.Column="2" Spacing="10">
+                <Entry x:Name="questionTwo"/>
+                <Label BindingContext="{Reference questionTwo}"
+                   Text="Correct"
+                   TextColor="LimeGreen"
+                   IsVisible="{Binding Text, Converter={StaticResource EqualConverter},ConverterParameter=3.14}"/>
+            </HorizontalStackLayout>
+        </Grid>
+    </VerticalStackLayout>
+
+</ContentPage>

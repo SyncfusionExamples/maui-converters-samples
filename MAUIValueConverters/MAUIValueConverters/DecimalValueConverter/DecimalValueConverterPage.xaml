@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusionConverters="clr-namespace:Syncfusion.Maui.Core.Converters;assembly=Syncfusion.Maui.Core"
+             x:Class="MAUIValueConverters.DecimalValueConverterPage"
+             xmlns:local="clr-namespace:MAUIValueConverters">
+
+    <ContentPage.BindingContext>
+        <local:DecimalValueConverterViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <syncfusionConverters:DecimalValueConverter x:Key="DecimalValueConverter" OutputType="String" NumberDecimalDigits="2"/>
+            <Style TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid  HorizontalOptions="Center" VerticalOptions="Center"
+           RowSpacing="10" ColumnSpacing="30"
+           RowDefinitions="*,*,*" ColumnDefinitions="*,*">
+
+        <Label Grid.Row="0" Grid.Column="0"
+               Text="Value of one stock price in numbers"/>
+
+        <Entry  Grid.Row="0" Grid.Column="1" Text="{Binding CostPerStock}"
+                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+        <Label Grid.Row="1" Grid.Column="0"
+               Text="Quantity purchased"/>
+
+        <Grid Grid.Row="1" Grid.Column="1"
+              ColumnDefinitions="*,*" ColumnSpacing="10">
+
+            <Stepper Minimum="1" Maximum="100" Value="{Binding Quantity}"
+                     HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label   Text="{Binding Quantity}" Grid.Column="1"/>
+        </Grid>
+
+        <Label Grid.Row="2"
+               Text="Total stock value"/>
+
+        <Label Grid.Row="2" Grid.Column="1"
+               Text="{Binding TotalValue,Converter={StaticResource DecimalValueConverter}}" TextColor="Red"/>
+    </Grid>
+</ContentPage>

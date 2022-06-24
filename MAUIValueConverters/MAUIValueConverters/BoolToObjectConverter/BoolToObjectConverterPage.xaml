@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusionConverters="clr-namespace:Syncfusion.Maui.Core.Converters;assembly=Syncfusion.Maui.Core"
+             x:Class="MAUIValueConverters.BoolToObjectConverterPage">
+    <ContentPage.Resources>
+        <syncfusionConverters:BoolToObjectConverter x:Key="boolToObjectConverter"  TrueValueObject="16" FalseValueObject="14"/>
+    </ContentPage.Resources>
+    <VerticalStackLayout WidthRequest="400" HorizontalOptions="Center" VerticalOptions="Center" Spacing="20">
+        <Label Text="Select your favorite fruit: "/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <CheckBox x:Name="checkBox1" Grid.Row="0" Grid.Column="0" />
+            <Label VerticalOptions="Center"  Grid.Row="0" Grid.Column="1"  BindingContext="{x:Reference checkBox1}" Text="Apple" FontSize="{Binding IsChecked, Converter={StaticResource boolToObjectConverter}}"/>
+
+            <CheckBox x:Name="checkBox2" Grid.Row="1" Grid.Column="0" />
+            <Label   VerticalOptions="Center"  Grid.Row="1" Grid.Column="1"  BindingContext="{x:Reference checkBox2}" Text="Orange" FontSize="{Binding IsChecked, Converter={StaticResource boolToObjectConverter}}"/>
+
+            <CheckBox x:Name="checkBox3" Grid.Row="2" Grid.Column="0" />
+            <Label  VerticalOptions="Center"  Grid.Row="2" Grid.Column="1"  BindingContext="{x:Reference checkBox3}" Text="Mango" FontSize="{Binding IsChecked, Converter={StaticResource boolToObjectConverter}}"/>
+
+            <CheckBox x:Name="checkBox4" Grid.Row="3" Grid.Column="0" />
+            <Label  VerticalOptions="Center"  Grid.Row="3" Grid.Column="1"  BindingContext="{x:Reference checkBox4}" Text="Strawberry" FontSize="{Binding IsChecked, Converter={StaticResource boolToObjectConverter}}"/>
+        </Grid>
+        <Label Text="* The font size of a specific fruit name will increase if it is checked." FontSize="12"/>
+    </VerticalStackLayout>
+</ContentPage>
