@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusionConverters="clr-namespace:Syncfusion.Maui.Core.Converters;assembly=Syncfusion.Maui.Core"
+             x:Class="MAUIValueConverters.ColorToOnColorConverterPage">
+    <ContentPage.Resources>
+        <syncfusionConverters:ColorToOnColorConverter x:Key="colorToOnColorConverter"/>
+    </ContentPage.Resources>
+    <VerticalStackLayout WidthRequest="400" Spacing="20" VerticalOptions="Center" HorizontalOptions="Center">
+        <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+            <Grid x:Name="parentGrid" HeightRequest="80" WidthRequest="190" BackgroundColor="MediumVioletRed">
+                <Label BindingContext="{x:Reference parentGrid}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="16" Text="Text Color" TextColor="{Binding BackgroundColor, Converter={StaticResource colorToOnColorConverter}}" />
+            </Grid>
+            <Grid x:Name="parentGrid1" HeightRequest="80" WidthRequest="190" BackgroundColor="LightPink">
+
+                <Label BindingContext="{x:Reference parentGrid1}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="16" Text="Text Color" TextColor="{Binding BackgroundColor, Converter={StaticResource colorToOnColorConverter}}" />
+            </Grid>
+        </HorizontalStackLayout>
+        <Label Text="* White color text for dark background and black color text for light background" HorizontalOptions="Center" FontSize="12"/>
+    </VerticalStackLayout>
+</ContentPage>

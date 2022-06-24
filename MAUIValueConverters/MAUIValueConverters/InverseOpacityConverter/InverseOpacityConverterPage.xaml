@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusionConverters="clr-namespace:Syncfusion.Maui.Core.Converters;assembly=Syncfusion.Maui.Core"
+             x:Class="MAUIValueConverters.InverseOpacityConverterPage">
+    <ContentPage.Resources>
+        <syncfusionConverters:InverseOpacityConverter x:Key="invertedOpacityConverter"/>
+    </ContentPage.Resources>
+    <VerticalStackLayout WidthRequest="400">
+        <Grid HeightRequest="300">
+        <Image BindingContext="{x:Reference opacitySlider}"
+               Opacity="{Binding Value,Converter={StaticResource invertedOpacityConverter}}"
+                Source="dotnet_bot.png"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                HeightRequest="200"
+                HorizontalOptions="Center" />
+        </Grid>
+        <Label Text="Invert opacity value based on slider value"/>
+        <Slider x:Name="opacitySlider" Minimum="0" Maximum="1"/>
+    </VerticalStackLayout>
+</ContentPage>

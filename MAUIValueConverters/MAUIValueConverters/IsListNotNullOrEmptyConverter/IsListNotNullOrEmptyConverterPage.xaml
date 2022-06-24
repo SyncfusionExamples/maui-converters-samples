@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel="clr-namespace:MAUIValueConverters"
+             xmlns:syncfusionConverters="clr-namespace:Syncfusion.Maui.Core.Converters;assembly=Syncfusion.Maui.Core"
+             x:Class="MAUIValueConverters.IsListNotNullOrEmptyConverterPage">
+    <ContentPage.Resources>
+        <syncfusionConverters:IsListNotNullOrEmptyConverter x:Key="isListNotNullOrEmptyConverter"/>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <ViewModel:IsListNotNullOrEmptyViewModel x:Name="isListNotNullOrEmptyViewModel"/>
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="20">
+        <Label Text="Ticket Booking System" HorizontalOptions="Center" FontSize="Medium"/>
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+        <Label Text="Total Number Of Persons:"/>
+        <Label Text="{Binding ListOfItems.Count}"/>
+        </HorizontalStackLayout>
+        <StackLayout Orientation="Horizontal" Spacing="20">
+            <Button Text="Clear Person" Command="{Binding ClearCollectionCommand}"/>
+            <Button Text="Add Person" Command="{Binding AddCollectionCommand}"/>
+        </StackLayout>
+        <StackLayout HeightRequest="200" WidthRequest="200">
+            <Label Text="* Booking can be allowed when number of persons is equal to one or more than one." FontSize="10"/>
+            <Button Text="Book Ticket" IsVisible="{Binding ListOfItems,Converter={StaticResource isListNotNullOrEmptyConverter}}" BackgroundColor="Green" TextColor="White"/>
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>

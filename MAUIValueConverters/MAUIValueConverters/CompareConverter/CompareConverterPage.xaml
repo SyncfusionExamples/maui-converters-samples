@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusionConverters="clr-namespace:Syncfusion.Maui.Core.Converters;assembly=Syncfusion.Maui.Core"
+             x:Class="MAUIValueConverters.CompareConverterPage">
+    <ContentPage.Resources>
+        <x:Double x:Key="ComparingValue">4</x:Double>
+    </ContentPage.Resources>
+    
+    <VerticalStackLayout WidthRequest="400" VerticalOptions="Center" Spacing="20">
+        <Label Text="Laptop Sale!!!" FontSize="16" HorizontalOptions="Center"/>
+        
+        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+            <Label Text="Item count: " VerticalOptions="Center"/>
+            <Label BindingContext="{x:Reference stepper}" VerticalOptions="Center" Text="{Binding Value}"/>
+            <Stepper x:Name="stepper" Minimum="0" Maximum="10" Value="2" />
+        </HorizontalStackLayout>
+        <Label Text="* Offer - buy 4 or more get 50% OFF" FontSize="12" HorizontalOptions="Center"/>
+        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+            <Label Text="Offer : "/>
+            <Label BindingContext="{x:Reference stepper}"  Text="{Binding Value,Converter={syncfusionConverters:CompareConverter ComparisonOperator=GreaterOrEqual, ValueForComparing={StaticResource ComparingValue}, FalseValueObject=Not_Available, TrueValueObject=Available}}"
+                    TextColor="{Binding Value,Converter={syncfusionConverters:CompareConverter ComparisonOperator=GreaterOrEqual, ValueForComparing={StaticResource ComparingValue}, FalseValueObject=#FF0000, TrueValueObject=#00FF00}}"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

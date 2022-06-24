@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusionConverters="clr-namespace:Syncfusion.Maui.Core.Converters;assembly=Syncfusion.Maui.Core"
+             x:Class="MAUIValueConverters.NumberToBoolConverterPage"
+             xmlns:local="clr-namespace:MAUIValueConverters">
+
+    <ContentPage.BindingContext>
+        <local:NumberToBoolViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <syncfusionConverters:NumberToBoolConverter x:Key="NumberToBoolConverter"/>
+    </ContentPage.Resources>
+    
+    <StackLayout HorizontalOptions="Center"
+                 VerticalOptions="Center">
+
+
+        <Grid RowDefinitions="*,*,50"
+              ColumnDefinitions="200,200"
+              HorizontalOptions="Center"
+              RowSpacing="20">
+
+            <Label Text="Family Chicken Combo" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <HorizontalStackLayout Grid.Column="1" Spacing="20">
+                <Label Text="Add" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                <CheckBox IsChecked="{Binding EntryValue,Converter={StaticResource NumberToBoolConverter},Mode=TwoWay}"/>
+            </HorizontalStackLayout>
+
+
+            <Label Text="Select quantity" Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <HorizontalStackLayout Grid.Row="1" Grid.Column="1" Spacing="10">
+                <Stepper x:Name="StepperValue" Minimum="0" Maximum="100" Value="{Binding EntryValue}"/>
+                <Label BindingContext="{x:Reference StepperValue}"
+                       Text="{Binding Value}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            </HorizontalStackLayout>
+            
+            <Label Text="* Proceed appears only if the quantity is at least one" FontAttributes="Italic" Grid.Row="2" FontSize="12"/>
+            <Button Text="Proceed" BackgroundColor="YellowGreen" IsVisible="{Binding EntryValue,Converter={StaticResource NumberToBoolConverter}}"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    WidthRequest="200"
+                    HorizontalOptions="Start"/>
+
+        </Grid>
+    </StackLayout>
+
+</ContentPage>

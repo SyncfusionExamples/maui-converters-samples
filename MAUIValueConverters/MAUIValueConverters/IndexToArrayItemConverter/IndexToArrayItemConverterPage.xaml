@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusionConverters="clr-namespace:Syncfusion.Maui.Core.Converters;assembly=Syncfusion.Maui.Core"
+             x:Class="MAUIValueConverters.IndexToArrayItemConverterPage">
+    <ContentPage.Resources>
+        <syncfusionConverters:IndexToArrayItemConverter x:Key="indexToArrayItemConverter"/>
+        <x:Array x:Key="Country" Type="{x:Type x:String}">
+            <x:String>India</x:String>
+            <x:String>England</x:String>
+            <x:String>America</x:String>
+            <x:String>Russia</x:String>
+            <x:String>Africa</x:String>
+        </x:Array>
+    </ContentPage.Resources>
+    <VerticalStackLayout Spacing="20" HorizontalOptions="Center" VerticalOptions="Center">
+
+        <Label Text="Index To Array Item" FontSize="18" HorizontalOptions="Center"/>
+        <HorizontalStackLayout Spacing="20">
+            <StackLayout Orientation="Horizontal" VerticalOptions="Center" Spacing="10">
+                <Label Text="Index Value : "/>
+                <Label Text="{Binding Value, Source={x:Reference Stepper}}"/>
+            </StackLayout>
+            <Picker x:Name="picker" BindingContext="{x:Reference Stepper}"
+                ItemsSource="{StaticResource Country}"
+                SelectedItem="{Binding Value, Converter={StaticResource indexToArrayItemConverter},ConverterParameter={StaticResource Country}}">
+            </Picker>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="20">
+            <Label Text="Change Index Value : " VerticalOptions="Center"/>
+            <Stepper x:Name="Stepper"
+                 Minimum="0"
+                 Maximum="4"
+                 Increment="1" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

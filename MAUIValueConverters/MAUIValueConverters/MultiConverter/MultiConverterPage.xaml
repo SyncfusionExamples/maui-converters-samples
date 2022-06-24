@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusionConverters="clr-namespace:Syncfusion.Maui.Core.Converters;assembly=Syncfusion.Maui.Core"
+             x:Class="MAUIValueConverters.MultiConverterPage"
+             xmlns:local="clr-namespace:MAUIValueConverters"
+             xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core">
+
+    <ContentPage.BindingContext>
+        <local:MultiConverterViewModel></local:MultiConverterViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <syncfusionConverters:MultiConverter x:Key="MultiConverter">
+                <syncfusionConverters:TextCaseConverter />
+                <syncfusionConverters:EqualConverter />
+            </syncfusionConverters:MultiConverter>
+            <x:Array x:Key="ParameterOfMultiConverter" Type="{x:Type core:ParametersOfMultiConverter}">
+                <core:ParametersOfMultiConverter TypeOfConverter="{x:Type syncfusionConverters:TextCaseConverter}" ValueOfConverter="{x:Static syncfusionConverters:CasingMode.UpperCase}" />
+                <core:ParametersOfMultiConverter TypeOfConverter="{x:Type syncfusionConverters:EqualConverter}" ValueOfConverter="SYNCFUSION" />
+            </x:Array>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout HorizontalOptions="Center"
+                 VerticalOptions="Center">
+        <Grid RowDefinitions="*,*" ColumnDefinitions="*,*" RowSpacing="20">
+            <Label Text="Trivia" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Label Text="Best company to deliver .NET MAUI products" Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <HorizontalStackLayout Grid.Row="1" Grid.Column="1" Spacing="20">
+                <Entry Text="{Binding EnteredAnswer}"/>
+                <Label Text="Correct"
+                   TextColor="LimeGreen" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   IsVisible="{Binding EnteredAnswer, Converter={StaticResource MultiConverter}, ConverterParameter={StaticResource ParameterOfMultiConverter}}"/>
+            </HorizontalStackLayout>
+        </Grid>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MAUIValueConverters.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MAUIValueConverters"
+    Shell.FlyoutBehavior="Locked">
+
+
+    <ShellContent
+        Title="Inverted Bool Converter"
+        ContentTemplate="{DataTemplate local:InvertedBoolConverterPage}"
+        Route="InvertedBoolConverterPage" />
+
+    <ShellContent
+        Title="Format String Converter"
+        ContentTemplate="{DataTemplate local:FormatStringConverterPage}"
+        Route="FormatStringConverterPage" />
+
+    <ShellContent
+        Title="Inverted Opacity Converter"
+        ContentTemplate="{DataTemplate local:InvertedOpacityConverterPage}"
+        Route="InvertedOpacityConverterPage" />
+
+
+    <ShellContent
+        Title="Bool To Object Converter"
+        ContentTemplate="{DataTemplate local:BoolToObjectConverterPage}"
+        Route="BoolToObjectConverterPage" />
+
+    <ShellContent
+        Title="Is String Not Null Or Whitespace Converter"
+        ContentTemplate="{DataTemplate local:IsStringNotNullOrWhitespaceConverterPage}"
+        Route="IsStringNotNullOrWhitespaceConverterPage" />
+
+    <ShellContent
+        Title="Is String Not Null Or Empty Converter"
+        ContentTemplate="{DataTemplate local:IsStringNotNullOrEmptyConverterPage}"
+        Route="IsStringNotNullOrEmptyConverterPage" />
+
+    <ShellContent
+        Title="Is List Not Null Or Empty Converter"
+        ContentTemplate="{DataTemplate local:IsListNotNullOrEmptyConverterPage}"
+        Route="IsListNotNullOrEmptyConverterPage" />
+
+    <ShellContent
+        Title="Index To Array Item Converter"
+        ContentTemplate="{DataTemplate local:IndexToArrayItemConverterPage}"
+        Route="IndexToArrayItemConverterPage" />
+
+    <ShellContent
+        Title="Compare Converter"
+        ContentTemplate="{DataTemplate local:CompareConverterPage}"
+        Route="CompareConverterPage" />
+
+    <ShellContent
+        Title="Color To Inverse Color Converter"
+        ContentTemplate="{DataTemplate local:ColorToInverseColorConverterPage}"
+        Route="ColorToInverseColorConverterPage" />
+    <ShellContent
+        Title="Color To Gray Scale Color Converter"
+        ContentTemplate="{DataTemplate local:ColorToGrayScaleColorConverterPage}"
+        Route="ColorToGrayScaleColorConverterPage" />
+    <ShellContent
+        Title="Color To On Color Converter"
+        ContentTemplate="{DataTemplate local:ColorToOnColorConverterPage}"
+        Route="ColorToOnColorConverterPage" />
+    <ShellContent
+        Title="Brush To Color Converter"
+        ContentTemplate="{DataTemplate local:BrushToColorConverterPage}"
+        Route="BrushToColorConverterPage" />
+    <ShellContent
+        Title="Color To Brush Converter"
+        ContentTemplate="{DataTemplate local:ColorToBrushConverterPage}"
+        Route="ColorToBrushConverterPage" />
+
+    <ShellContent
+        Title="Decimal Value Converter"
+        ContentTemplate="{DataTemplate local:DecimalValueConverterPage}"
+        Route="DecimalValueConverterPage" />
+
+    <ShellContent
+        Title="Bool To Opacity Converter"
+        ContentTemplate="{DataTemplate local:BoolToOpacityConverterPage}"
+        Route="BoolToOpacityConverterPage" />
+
+    <ShellContent
+        Title="Text Case Converter"
+        ContentTemplate="{DataTemplate local:TextCaseConverterPage}"
+        Route="TextCaseConverterPage" />
+
+    <ShellContent
+        Title="Number To Bool Converter"
+        ContentTemplate="{DataTemplate local:NumberToBoolConverterPage}"
+        Route="NumberToBoolConverterPage" />
+
+    <ShellContent
+        Title="Equal Converter"
+        ContentTemplate="{DataTemplate local:EqualConverterPage}"
+        Route="EqualConverterPage" />
+
+    <ShellContent
+        Title="Double To Int Converter"
+        ContentTemplate="{DataTemplate local:DoubleToIntConverterPage}"
+        Route="DoubleToIntConverterPage" />
+
+    <ShellContent
+        Title="String To List Converter"
+        ContentTemplate="{DataTemplate local:StringToListConverterPage}"
+        Route="StringToListConverterPage" />
+
+    <ShellContent
+        Title="List To String Converter"
+        ContentTemplate="{DataTemplate local:ListToStringConverterPage}"
+        Route="ListToStringConverterPage" />
+
+    <ShellContent
+        Title="Multi Converter"
+        ContentTemplate="{DataTemplate local:MultiConverterPage}"
+        Route="MultiConverterPage" />
+
+    <ShellContent
+        Title="Enum To Int Converter"
+        ContentTemplate="{DataTemplate local:EnumToIntConverterPage}"
+        Route="EnumToIntConverterPage" />
+
+
+
+</Shell>
